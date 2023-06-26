@@ -22,7 +22,32 @@ let newBook;
 
 function addBookToLibrary(){
     event.preventDefault();
-    popUpForm.style.display = 'none';
+
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+
+    if (title.trim() === '') {
+        alert('Please enter a title.');
+        return;
+    }
+
+    if (author.trim() === '') {
+        alert('Please enter an author.');
+        return;
+    }
+
+    if (pages.trim() === '') {
+        alert('Please enter the number of pages.');
+        return;
+    }
+
+    if (isNaN(pages) || parseInt(pages) <= 0) {
+        alert('Please enter a valid number of pages.');
+        return;
+    }
+
+    popUpForm.style.display = 'none';    
     newBook = new Book(title, author, pages,read); 
     myLibrary.push(newBook); 
     setData(); 
